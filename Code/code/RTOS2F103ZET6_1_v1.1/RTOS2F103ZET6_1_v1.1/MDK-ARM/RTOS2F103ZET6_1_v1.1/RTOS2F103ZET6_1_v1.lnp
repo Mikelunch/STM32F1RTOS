@@ -1,0 +1,28 @@
+--cpu Cortex-M3
+"rtos2f103zet6_1_v1.1\startup_stm32f103xe.o"
+"rtos2f103zet6_1_v1.1\main.o"
+"rtos2f103zet6_1_v1.1\gpio.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_it.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_msp.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_timebase_tim.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_gpio_ex.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_tim.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_tim_ex.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_rcc.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_rcc_ex.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_gpio.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_dma.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_cortex.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_pwr.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_flash.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_flash_ex.o"
+"rtos2f103zet6_1_v1.1\stm32f1xx_hal_exti.o"
+"rtos2f103zet6_1_v1.1\system_stm32f1xx.o"
+"rtos2f103zet6_1_v1.1\list.o"
+"rtos2f103zet6_1_v1.1\port.o"
+"rtos2f103zet6_1_v1.1\task.o"
+--library_type=microlib --strict --scatter "RTOS2F103ZET6_1_v1.1\RTOS2F103ZET6_1_v1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "RTOS2F103ZET6_1_v1.map" -o RTOS2F103ZET6_1_v1.1\RTOS2F103ZET6_1_v1.1
