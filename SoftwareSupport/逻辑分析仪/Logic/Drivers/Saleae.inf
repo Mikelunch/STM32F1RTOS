@@ -1,0 +1,133 @@
+[Version]
+Signature = "$Windows NT$"
+Class = USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+Provider = %Provider%
+DriverVer=11/02/2006,6.0.6000.16388
+CatalogFile=saleaecatalogfile.cat
+
+
+; ========== Manufacturer/Models sections ===========
+
+[Manufacturer]
+%Provider% = SaleaeMfg,NTx86,NTamd64
+
+[SaleaeMfg.NTx86]
+%USB\SaleaeLogic.DeviceDesc% = LogicInstall, USB\VID_0925&PID_3881
+%USB\SaleaeLogic16.DeviceDesc% = Logic16Install, USB\VID_21A9&PID_1001
+
+[SaleaeMfg.NTamd64]
+%USB\SaleaeLogic.DeviceDesc% = LogicInstall, USB\VID_0925&PID_3881
+%USB\SaleaeLogic16.DeviceDesc% = Logic16Install, USB\VID_21A9&PID_1001
+
+; =================== Installation ===================
+
+
+[LogicInstall]
+Include=winusb.inf
+Needs=WINUSB.NT
+
+[Logic16Install]
+Include=winusb.inf
+Needs=WINUSB.NT
+
+
+
+[LogicInstall.Services]
+Include=winusb.inf
+AddService=WinUSB,0x00000002,WinUSB_ServiceInstall
+
+[Logic16Install.Services]
+Include=winusb.inf
+AddService=WinUSB,0x00000002,WinUSB_ServiceInstall
+
+
+
+[WinUSB_ServiceInstall]
+DisplayName     = %WinUSB_SvcDesc%
+ServiceType     = 1
+StartType       = 3
+ErrorControl    = 1
+ServiceBinary   = %12%\WinUSB.sys
+
+
+
+[LogicInstall.Wdf]
+KmdfService=WINUSB, WinUsb_Install
+UmdfServiceOrder=WINUSB
+
+[Logic16Install.Wdf]
+KmdfService=WINUSB, WinUsb_Install
+UmdfServiceOrder=WINUSB
+
+
+
+[WinUSB_Install]
+KmdfLibraryVersion=1.7
+
+
+
+[LogicInstall.HW]
+AddReg=Dev_AddRegLogic
+
+[Logic16Install.HW]
+AddReg=Dev_AddRegLogic16
+
+
+
+[Dev_AddRegLogic]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{21459242-8155-11DD-BC59-51D755D89593}"
+
+[Dev_AddRegLogic16]
+HKR,,DeviceInterfaceGUIDs,0x10000,"{D509886E-3AA5-11DF-861E-86B356D89593}"
+
+
+
+[LogicInstall.CoInstallers]
+AddReg=CoInstallers_AddReg
+CopyFiles=CoInstallers_CopyFiles
+
+[Logic16Install.CoInstallers]
+AddReg=CoInstallers_AddReg
+CopyFiles=CoInstallers_CopyFiles
+
+
+
+[CoInstallers_AddReg]
+HKR,,CoInstallers32,0x00010000,"WUDFUpdate_01007.dll","WinUSBCoInstaller.dll","WdfCoInstaller01007.dll,WdfCoInstaller"
+
+[CoInstallers_CopyFiles]
+WdfCoInstaller01007.dll
+WinUSBCoInstaller.dll
+WUDFUpdate_01007.dll
+
+[DestinationDirs]
+CoInstallers_CopyFiles=11
+
+; ================= Source Media Section =====================
+
+[SourceDisksNames.x86]
+1 = %DISK_NAME%,,,\x86
+
+[SourceDisksNames.amd64]
+2 = %DISK_NAME%,,,\amd64
+
+[SourceDisksFiles.x86]
+WdfCoInstaller01007.dll=1
+WinUSBCoInstaller.dll=1
+WUDFUpdate_01007.dll=1
+
+[SourceDisksFiles.amd64]
+WdfCoInstaller01007.dll=2
+WinUSBCoInstaller.dll=2
+WUDFUpdate_01007.dll=2
+
+; =================== Strings ===================
+
+[Strings]
+Provider="Saleae LLC"
+USB\SaleaeLogic.DeviceDesc="Saleae Logic USB Logic Analyzer"
+USB\SaleaeLogic16.DeviceDesc="Saleae Logic16 USB Logic Analyzer"
+WinUSB_SvcDesc="Saleae Logic Analyzer"
+DISK_NAME = "Driver Disk"
+
